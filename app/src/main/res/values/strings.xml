@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CryptoApp</string>
+    <string name="symbols_template">%s / %s</string>
+    <string name="last_update_template">Last update: %s</string>
+    <string name="splash">/</string>
+    <string name="price">Price:</string>
+    <string name="min_price_per_day">Min price per day:</string>
+    <string name="max_price_per_day">Max price per day:</string>
+    <string name="last_market">Last market:</string>
+    <string name="last_update">Last update:</string>
+</resources>
