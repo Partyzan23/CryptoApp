@@ -1,8 +1,8 @@
-package com.gmail.pashkovich.al.cryptoapp.pojo
+package com.gmail.pashkovich.al.cryptoapp.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.gmail.pashkovich.al.cryptoapp.api.ApiFactory.BASE_IMAGE_URL
+import com.gmail.pashkovich.al.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import com.gmail.pashkovich.al.cryptoapp.utils.convertTimestampToTime
 import com.google.gson.annotations.Expose
 

@@ -1,13 +1,13 @@
-package com.gmail.pashkovich.al.cryptoapp
+package com.gmail.pashkovich.al.cryptoapp.presentation
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.gmail.pashkovich.al.cryptoapp.api.ApiFactory
-import com.gmail.pashkovich.al.cryptoapp.database.AppDatabase
-import com.gmail.pashkovich.al.cryptoapp.pojo.CoinPriceInfo
-import com.gmail.pashkovich.al.cryptoapp.pojo.CoinPriceInfoRawData
+import com.gmail.pashkovich.al.cryptoapp.data.network.ApiFactory
+import com.gmail.pashkovich.al.cryptoapp.data.database.AppDatabase
+import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfo
+import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfoRawData
 import com.google.gson.Gson
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers

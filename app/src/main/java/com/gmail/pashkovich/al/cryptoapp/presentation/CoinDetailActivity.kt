@@ -1,14 +1,13 @@
-package com.gmail.pashkovich.al.cryptoapp
+package com.gmail.pashkovich.al.cryptoapp.presentation
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinDetailBinding
-import com.gmail.pashkovich.al.cryptoapp.pojo.CoinPriceInfo
+import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfo
 import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {

@@ -1,7 +1,7 @@
-package com.gmail.pashkovich.al.cryptoapp.api
+package com.gmail.pashkovich.al.cryptoapp.data.network
 
-import com.gmail.pashkovich.al.cryptoapp.pojo.CoinPriceInfoRawData
-import com.gmail.pashkovich.al.cryptoapp.pojo.CoinInfoListOfData
+import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfoRawData
+import com.gmail.pashkovich.al.cryptoapp.data.model.CoinInfoListOfData
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

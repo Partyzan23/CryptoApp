@@ -1,4 +1,4 @@
-package com.gmail.pashkovich.al.cryptoapp.adapters
+package com.gmail.pashkovich.al.cryptoapp.presentation.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.pashkovich.al.cryptoapp.R
 import com.gmail.pashkovich.al.cryptoapp.databinding.ItemCoinInfoBinding
-import com.gmail.pashkovich.al.cryptoapp.pojo.CoinPriceInfo
+import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfo
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {

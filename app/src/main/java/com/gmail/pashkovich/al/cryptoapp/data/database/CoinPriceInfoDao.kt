@@ -1,11 +1,11 @@
-package com.gmail.pashkovich.al.cryptoapp.database
+package com.gmail.pashkovich.al.cryptoapp.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gmail.pashkovich.al.cryptoapp.pojo.CoinPriceInfo
+import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfo
 
 
 @Dao
