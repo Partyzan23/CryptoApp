@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinDetailBinding
-import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfo
+import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoDto
 import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
@@ -35,7 +35,7 @@ class CoinDetailActivity : AppCompatActivity() {
 
     }
 
-    private fun getCoinDetailInfo(coinPriceInfo: CoinPriceInfo) {
+    private fun getCoinDetailInfo(coinPriceInfo: CoinInfoDto) {
         with(binding) {
             tvPrice.text = coinPriceInfo.price.toString()
             tvFromSymbol.text = coinPriceInfo.fromSymbol

@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.pashkovich.al.cryptoapp.presentation.adapters.CoinInfoAdapter
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinPriceListBinding
-import com.gmail.pashkovich.al.cryptoapp.data.model.CoinPriceInfo
+import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoDto
 
 class CoinPriceListActivity : AppCompatActivity() {
 
@@ -27,7 +27,7 @@ class CoinPriceListActivity : AppCompatActivity() {
         })
 
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener{
-            override fun onCoinClick(coinPriceInfo: CoinPriceInfo) {
+            override fun onCoinClick(coinPriceInfo: CoinInfoDto) {
                 val intent = CoinDetailActivity.newIntent(
                     this@CoinPriceListActivity,
                     coinPriceInfo.fromSymbol
