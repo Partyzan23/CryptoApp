@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.gmail.pashkovich.al.cryptoapp.data.network.ApiFactory
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinDetailBinding
 import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoDto
+import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
+import com.gmail.pashkovich.al.cryptoapp.utils.convertTimestampToTime
 import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
@@ -26,16 +29,16 @@ class CoinDetailActivity : AppCompatActivity() {
             return
         }
         val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL)
-        viewModel = ViewModelProvider(this).get(CoinViewModel::class.java)
+        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
         fromSymbol?.let {
-            viewModel.getDetailInfo(fromSymbol).observe(this, Observer {
+            viewModel.getDetailInfo(fromSymbol).observe(this) {
                 getCoinDetailInfo(it)
-            })
+            }
         }
 
     }
 
-    private fun getCoinDetailInfo(coinPriceInfo: CoinInfoDto) {
+    private fun getCoinDetailInfo(coinPriceInfo: CoinInfo) {
         with(binding) {
             tvPrice.text = coinPriceInfo.price.toString()
             tvFromSymbol.text = coinPriceInfo.fromSymbol
@@ -43,8 +46,8 @@ class CoinDetailActivity : AppCompatActivity() {
             tvMinPrice.text = coinPriceInfo.lowDay.toString()
             tvMaxPrice.text = coinPriceInfo.highDay.toString()
             tvLastMarket.text = coinPriceInfo.lastMarket
-            tvLastUpdate.text = coinPriceInfo.getFormattedTime()
-            Picasso.get().load(coinPriceInfo.getFullImageUrl()).into(ivLogoCoin)
+            tvLastUpdate.text = convertTimestampToTime(coinPriceInfo.lastUpdate)
+            Picasso.get().load(ApiFactory.BASE_IMAGE_URL + coinPriceInfo.imageUrl).into(ivLogoCoin)
         }
 
     }

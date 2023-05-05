@@ -2,7 +2,6 @@ package com.gmail.pashkovich.al.cryptoapp.data.network
 
 import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoJsonContainerDto
 import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinNamesListDto
-import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 

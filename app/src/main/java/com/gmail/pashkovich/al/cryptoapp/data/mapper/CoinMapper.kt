@@ -13,6 +13,7 @@ class CoinMapper {
         fromSymbol = dto.fromSymbol,
         toSymbol = dto.toSymbol,
         price = dto.price,
+        lastMarket = dto.lastMarket,
         lastUpdate = dto.lastUpdate,
         highDay = dto.highDay,
         lowDay = dto.lowDay,
@@ -42,13 +43,14 @@ class CoinMapper {
     fun mapNamesListToString(namesListDto: CoinNamesListDto): String {
         return namesListDto.names?.map {
                 it1 -> it1.coinName?.name
-        }?.joinToString(",") ?: ""
+        }?.joinToString(",") ?: "BTC"
     }
 
     fun mapDbModelToEntity(dbModel: CoinInfoDbModel): CoinInfo = CoinInfo(
         fromSymbol = dbModel.fromSymbol,
         toSymbol = dbModel.toSymbol,
         price = dbModel.price,
+        lastMarket = dbModel.lastMarket,
         lastUpdate = dbModel.lastUpdate,
         highDay = dbModel.highDay,
         lowDay = dbModel.lowDay,

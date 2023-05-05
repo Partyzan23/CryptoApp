@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.gmail.pashkovich.al.cryptoapp.presentation.adapters.CoinInfoAdapter
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinPriceListBinding
-import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoDto
+import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
+import com.gmail.pashkovich.al.cryptoapp.presentation.adapters.CoinInfoAdapter
 
 class CoinPriceListActivity : AppCompatActivity() {
 
@@ -21,13 +21,13 @@ class CoinPriceListActivity : AppCompatActivity() {
         setContentView(binding.root)
         val adapter = CoinInfoAdapter(this)
         binding.rvCoinPriceList.adapter = adapter
-        viewModel = ViewModelProvider(this).get(CoinViewModel::class.java)
-        viewModel.priceList.observe(this, Observer {
+        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
+        viewModel.coinInfoList.observe(this) {
             adapter.coinInfoList = it
-        })
+        }
 
-        adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener{
-            override fun onCoinClick(coinPriceInfo: CoinInfoDto) {
+        adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
+            override fun onCoinClick(coinPriceInfo: CoinInfo) {
                 val intent = CoinDetailActivity.newIntent(
                     this@CoinPriceListActivity,
                     coinPriceInfo.fromSymbol

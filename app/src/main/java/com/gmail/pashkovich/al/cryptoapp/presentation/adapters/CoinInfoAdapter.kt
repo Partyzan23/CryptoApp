@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.pashkovich.al.cryptoapp.R
+import com.gmail.pashkovich.al.cryptoapp.data.network.ApiFactory
 import com.gmail.pashkovich.al.cryptoapp.databinding.ItemCoinInfoBinding
-import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoDto
+import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
+import com.gmail.pashkovich.al.cryptoapp.utils.convertTimestampToTime
 import com.squareup.picasso.Picasso
 
-class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
+class CoinInfoAdapter(private val context: Context) :
+    RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
 
-    var coinInfoList: List<CoinInfoDto> = listOf()
+    var coinInfoList: List<CoinInfo> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -43,7 +46,7 @@ class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinI
     inner class CoinInfoViewHolder(private val binding: ItemCoinInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(coinPriceInfo: CoinInfoDto) {
+        fun bind(coinPriceInfo: CoinInfo) {
             binding.tvSymbols.text = String.format(
                 context.resources.getString(R.string.symbols_template),
                 coinPriceInfo.fromSymbol,
@@ -52,15 +55,16 @@ class CoinInfoAdapter(private val context: Context) : RecyclerView.Adapter<CoinI
             binding.tvPrice.text = coinPriceInfo.price.toString()
             binding.tvTimeLastUpdate.text = String.format(
                 context.resources.getString(R.string.last_update_template),
-                coinPriceInfo.getFormattedTime()
+                convertTimestampToTime(coinPriceInfo.lastUpdate)
             )
-            Picasso.get().load(coinPriceInfo.getFullImageUrl()).into(binding.ivLogoCoin)
+            Picasso.get().load(ApiFactory.BASE_IMAGE_URL + coinPriceInfo.imageUrl)
+                .into(binding.ivLogoCoin)
         }
 
     }
 
-    interface OnCoinClickListener{
-        fun onCoinClick(coinPriceInfo: CoinInfoDto)
+    interface OnCoinClickListener {
+        fun onCoinClick(coinPriceInfo: CoinInfo)
     }
 
 }
