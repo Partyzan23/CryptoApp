@@ -2,15 +2,11 @@ package com.gmail.pashkovich.al.cryptoapp.presentation
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.gmail.pashkovich.al.cryptoapp.data.network.ApiFactory
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinDetailBinding
-import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoDto
 import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
-import com.gmail.pashkovich.al.cryptoapp.utils.convertTimestampToTime
 import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
@@ -46,8 +42,8 @@ class CoinDetailActivity : AppCompatActivity() {
             tvMinPrice.text = coinPriceInfo.lowDay.toString()
             tvMaxPrice.text = coinPriceInfo.highDay.toString()
             tvLastMarket.text = coinPriceInfo.lastMarket
-            tvLastUpdate.text = convertTimestampToTime(coinPriceInfo.lastUpdate)
-            Picasso.get().load(ApiFactory.BASE_IMAGE_URL + coinPriceInfo.imageUrl).into(ivLogoCoin)
+            tvLastUpdate.text = coinPriceInfo.lastUpdate
+            Picasso.get().load(coinPriceInfo.imageUrl).into(ivLogoCoin)
         }
 
     }

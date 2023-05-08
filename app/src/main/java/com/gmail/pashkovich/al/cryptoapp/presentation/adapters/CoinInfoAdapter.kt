@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.pashkovich.al.cryptoapp.R
-import com.gmail.pashkovich.al.cryptoapp.data.network.ApiFactory
 import com.gmail.pashkovich.al.cryptoapp.databinding.ItemCoinInfoBinding
 import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
-import com.gmail.pashkovich.al.cryptoapp.utils.convertTimestampToTime
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context) :
@@ -55,9 +53,9 @@ class CoinInfoAdapter(private val context: Context) :
             binding.tvPrice.text = coinPriceInfo.price.toString()
             binding.tvTimeLastUpdate.text = String.format(
                 context.resources.getString(R.string.last_update_template),
-                convertTimestampToTime(coinPriceInfo.lastUpdate)
+                coinPriceInfo.lastUpdate
             )
-            Picasso.get().load(ApiFactory.BASE_IMAGE_URL + coinPriceInfo.imageUrl)
+            Picasso.get().load(coinPriceInfo.imageUrl)
                 .into(binding.ivLogoCoin)
         }
 
