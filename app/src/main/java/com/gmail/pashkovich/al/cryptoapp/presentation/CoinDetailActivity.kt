@@ -4,11 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.gmail.pashkovich.al.cryptoapp.R
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinDetailBinding
-import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
-import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
 
