@@ -10,7 +10,7 @@ import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context) :
-    RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
+    RecyclerView.Adapter<CoinInfoViewHolder>() {
 
     var coinInfoList: List<CoinInfo> = listOf()
         set(value) {
@@ -31,34 +31,28 @@ class CoinInfoAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: CoinInfoViewHolder, position: Int) {
         val coin = coinInfoList[position]
-        holder.bind(coin)
-        holder.itemView.setOnClickListener {
-            onCoinClickListener?.onCoinClick(coin)
+        with(holder.binding) {
+            tvSymbols.text = String.format(
+                context.resources.getString(R.string.symbols_template),
+                coin.fromSymbol,
+                coin.toSymbol
+            )
+            tvPrice.text = coin.price.toString()
+            tvTimeLastUpdate.text = String.format(
+                context.resources.getString(R.string.last_update_template),
+                coin.lastUpdate
+            )
+            Picasso.get().load(coin.imageUrl)
+                .into(ivLogoCoin)
+            root.setOnClickListener {
+                onCoinClickListener?.onCoinClick(coin)
+            }
         }
+
     }
 
     override fun getItemCount(): Int {
         return coinInfoList.size
-    }
-
-    inner class CoinInfoViewHolder(private val binding: ItemCoinInfoBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(coinPriceInfo: CoinInfo) {
-            binding.tvSymbols.text = String.format(
-                context.resources.getString(R.string.symbols_template),
-                coinPriceInfo.fromSymbol,
-                coinPriceInfo.toSymbol
-            )
-            binding.tvPrice.text = coinPriceInfo.price.toString()
-            binding.tvTimeLastUpdate.text = String.format(
-                context.resources.getString(R.string.last_update_template),
-                coinPriceInfo.lastUpdate
-            )
-            Picasso.get().load(coinPriceInfo.imageUrl)
-                .into(binding.ivLogoCoin)
-        }
-
     }
 
     interface OnCoinClickListener {
