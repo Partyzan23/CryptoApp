@@ -10,14 +10,14 @@ import com.gmail.pashkovich.al.cryptoapp.presentation.adapters.CoinInfoAdapter
 
 class CoinPriceListActivity : AppCompatActivity() {
 
-    private var _binding: ActivityCoinPriceListBinding? = null
-    private val binding get() = _binding!!
+    private val binding by lazy {
+        ActivityCoinPriceListBinding.inflate(layoutInflater)
+    }
 
     private lateinit var viewModel: CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityCoinPriceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val adapter = CoinInfoAdapter(this)
         binding.rvCoinPriceList.adapter = adapter

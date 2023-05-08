@@ -11,14 +11,14 @@ import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
 
-    private var _binding: ActivityCoinDetailBinding? = null
-    private val binding get() = _binding!!
+    private val binding by lazy {
+        ActivityCoinDetailBinding.inflate(layoutInflater)
+    }
 
     private lateinit var viewModel: CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityCoinDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (!intent.hasExtra(EXTRA_FROM_SYMBOL)) {
             finish()
