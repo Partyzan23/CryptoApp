@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.gmail.pashkovich.al.cryptoapp.R
 import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinDetailBinding
 import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
 import com.squareup.picasso.Picasso
@@ -24,32 +25,19 @@ class CoinDetailActivity : AppCompatActivity() {
             finish()
             return
         }
-        val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL)
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
-        fromSymbol?.let {
-            viewModel.getDetailInfo(fromSymbol).observe(this) {
-                getCoinDetailInfo(it)
-            }
-        }
-
-    }
-
-    private fun getCoinDetailInfo(coinPriceInfo: CoinInfo) {
-        with(binding) {
-            tvPrice.text = coinPriceInfo.price.toString()
-            tvFromSymbol.text = coinPriceInfo.fromSymbol
-            tvToSymbol.text = coinPriceInfo.toSymbol
-            tvMinPrice.text = coinPriceInfo.lowDay.toString()
-            tvMaxPrice.text = coinPriceInfo.highDay.toString()
-            tvLastMarket.text = coinPriceInfo.lastMarket
-            tvLastUpdate.text = coinPriceInfo.lastUpdate
-            Picasso.get().load(coinPriceInfo.imageUrl).into(ivLogoCoin)
+        val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL) ?: EMPTY_SYMBOL
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, CoinDetailFragment.newInstance(fromSymbol))
+                .commit()
         }
 
     }
 
     companion object {
         private const val EXTRA_FROM_SYMBOL = "fSym"
+        private const val EMPTY_SYMBOL = ""
 
         fun newIntent(context: Context, fromSymbol: String): Intent {
             val intent = Intent(context, CoinDetailActivity::class.java)
