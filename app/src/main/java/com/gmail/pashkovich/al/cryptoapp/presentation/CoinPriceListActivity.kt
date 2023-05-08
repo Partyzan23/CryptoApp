@@ -21,9 +21,10 @@ class CoinPriceListActivity : AppCompatActivity() {
         setContentView(binding.root)
         val adapter = CoinInfoAdapter(this)
         binding.rvCoinPriceList.adapter = adapter
+        binding.rvCoinPriceList.itemAnimator = null
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
         viewModel.coinInfoList.observe(this) {
-            adapter.coinInfoList = it
+            adapter.submitList(it)
         }
 
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
