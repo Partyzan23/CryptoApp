@@ -13,8 +13,9 @@ import com.gmail.pashkovich.al.cryptoapp.data.workers.RefreshDataWorker
 import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
 import com.gmail.pashkovich.al.cryptoapp.domain.CoinRepository
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class CoinRepositoryImpl(
+class CoinRepositoryImpl @Inject constructor (
     private val application: Application
 ) : CoinRepository {
 

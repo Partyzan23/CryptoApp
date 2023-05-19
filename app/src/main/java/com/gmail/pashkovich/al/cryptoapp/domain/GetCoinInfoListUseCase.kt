@@ -1,6 +1,8 @@
 package com.gmail.pashkovich.al.cryptoapp.domain
 
-class GetCoinInfoListUseCase(
+import javax.inject.Inject
+
+class GetCoinInfoListUseCase @Inject constructor (
     private val coinRepository: CoinRepository
 ) {
 
