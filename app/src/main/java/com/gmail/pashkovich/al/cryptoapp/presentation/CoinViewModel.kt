@@ -1,7 +1,6 @@
 package com.gmail.pashkovich.al.cryptoapp.presentation
 
 import androidx.lifecycle.ViewModel
-import com.gmail.pashkovich.al.cryptoapp.data.repository.CoinRepositoryImpl
 import com.gmail.pashkovich.al.cryptoapp.domain.GetCoinInfoListUseCase
 import com.gmail.pashkovich.al.cryptoapp.domain.GetCoinInfoUseCase
 import com.gmail.pashkovich.al.cryptoapp.domain.LoadDataUseCase
