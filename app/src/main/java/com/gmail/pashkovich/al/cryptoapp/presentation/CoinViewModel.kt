@@ -1,23 +1,16 @@
 package com.gmail.pashkovich.al.cryptoapp.presentation
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
-import com.gmail.pashkovich.al.cryptoapp.data.network.model.CoinInfoDto
-import com.gmail.pashkovich.al.cryptoapp.data.repository.CoinRepositoryImpl
+import androidx.lifecycle.ViewModel
 import com.gmail.pashkovich.al.cryptoapp.domain.GetCoinInfoListUseCase
 import com.gmail.pashkovich.al.cryptoapp.domain.GetCoinInfoUseCase
 import com.gmail.pashkovich.al.cryptoapp.domain.LoadDataUseCase
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CoinViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = CoinRepositoryImpl(application)
-
-    private val loadDataUseCase = LoadDataUseCase(repository)
-    private val getCoinInfoUseCase = GetCoinInfoUseCase(repository)
-    private val getCoinInfoListUseCase = GetCoinInfoListUseCase(repository)
+class CoinViewModel @Inject constructor(
+    private val loadDataUseCase: LoadDataUseCase,
+    private val getCoinInfoUseCase: GetCoinInfoUseCase,
+    private val getCoinInfoListUseCase: GetCoinInfoListUseCase
+) : ViewModel() {
 
     val coinInfoList = getCoinInfoListUseCase()
 

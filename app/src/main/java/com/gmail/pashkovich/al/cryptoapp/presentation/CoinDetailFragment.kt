@@ -13,8 +13,12 @@ import com.gmail.pashkovich.al.cryptoapp.databinding.ActivityCoinDetailBinding
 import com.gmail.pashkovich.al.cryptoapp.databinding.FragmentCoinDetailBinding
 import com.gmail.pashkovich.al.cryptoapp.domain.CoinInfo
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 class CoinDetailFragment : Fragment() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private var _binding: FragmentCoinDetailBinding? = null
     private val binding: FragmentCoinDetailBinding
@@ -22,6 +26,15 @@ class CoinDetailFragment : Fragment() {
             ?: throw RuntimeException("FragmentCoinDetailBinding is null")
 
     private lateinit var viewModel: CoinViewModel
+
+    private val component by lazy {
+        (requireActivity().application as CoinApp).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +48,7 @@ class CoinDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fromSymbol = getSymbol()
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[CoinViewModel::class.java]
         viewModel.getDetailInfo(fromSymbol).observe(viewLifecycleOwner) {
             getCoinDetailInfo(it)
         }
